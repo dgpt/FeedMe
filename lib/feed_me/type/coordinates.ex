@@ -1,4 +1,4 @@
-defmodule FeedMe.Types.Coordinates do
+defmodule FeedMe.Type.Coordinates do
   use Ecto.Type
 
   def type, do: :map
@@ -27,4 +27,8 @@ defmodule FeedMe.Types.Coordinates do
   end
 
   def dump(_), do: :error
+
+  def serialize({latitude, longitude}) do
+    "(#{latitude},#{longitude})"
+  end
 end
