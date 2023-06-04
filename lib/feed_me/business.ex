@@ -15,5 +15,6 @@ defmodule FeedMe.Business do
   def changeset(%__MODULE__{} = business, attrs) do
     business
     |> validate_required([:name])
+    |> cast(attrs, [:name])
   end
 end
