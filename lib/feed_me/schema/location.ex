@@ -4,15 +4,15 @@ defmodule FeedMe.Schema.Location do
 
   schema "locations" do
     field :address, :string
-    field :coordinates, FeedMe.Types.Coordinates
+    field :coordinates, FeedMe.Type.Coordinates
     field :description, :string
     field :facility_type, :string
     field :permit_status, Ecto.Enum, values: [:approved, :requested, :rejected, :expired]
     field :menu_items, :string
-    field :approved_at, Ecto.DateTime
-    field :expired_at, Ecto.DateTime
-    field :synced_at, Ecto.DateTime
-    belongs_to :business, FeedMe.Business
+    field :approved_at, :utc_datetime
+    field :expired_at, :utc_datetime
+    field :synced_at, :utc_datetime
+    belongs_to :business, FeedMe.Schema.Business
   end
 
   def changeset(attrs) do
@@ -22,7 +22,6 @@ defmodule FeedMe.Schema.Location do
 
   def changeset(%__MODULE__{} = location, attrs) do
     location
-    |> validate_required([:name, :business_id])
     |> cast(attrs, [
       :name,
       :business_id,
@@ -36,5 +35,6 @@ defmodule FeedMe.Schema.Location do
       :expired_at,
       :synced_at
     ])
+    |> validate_required([:name, :business_id])
   end
 end
