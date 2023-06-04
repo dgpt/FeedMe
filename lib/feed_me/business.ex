@@ -1,20 +1,16 @@
 defmodule FeedMe.Business do
-  use Ecto.Schema
-  import Ecto.Changeset
+  alias FeedMe.Repo
+  alias FeedMe.Schema.Business
 
-  schema "businesses" do
-    field :name, :string
-    has_many :locations, FeedMe.Location
+  def all do
+    Repo.all(Business)
   end
 
-  def changeset(attrs) do
-    %__MODULE__{}
-    |> changeset(attrs)
+  def get(id) do
+    Repo.get(Business, id)
   end
 
-  def changeset(%__MODULE__{} = business, attrs) do
-    business
-    |> validate_required([:name])
-    |> cast(attrs, [:name])
+  def update(%Business{} = business, attrs) do
+    Repo.update(business, attrs)
   end
 end
