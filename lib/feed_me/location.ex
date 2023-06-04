@@ -5,6 +5,9 @@ defmodule FeedMe.Location do
   schema "locations" do
     field :address, :string
     field :coordinates, FeedMe.Types.Coordinates
+    field :description, :string
+    field :facility_type, :string
+    field :permit_status, Ecto.Enum, values: [:approved, :requested, :rejected, :expired]
     belongs_to :business, FeedMe.Business
   end
 
