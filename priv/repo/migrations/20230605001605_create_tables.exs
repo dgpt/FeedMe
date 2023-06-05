@@ -7,6 +7,8 @@ defmodule FeedMe.Repo.Migrations.CreateTables do
       timestamps()
     end
 
+    create unique_index("businesses", [:name])
+
     create table("locations") do
       add :address, :string
       add :coordinates, :map

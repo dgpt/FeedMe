@@ -15,4 +15,9 @@ defmodule FeedMe.Location do
     |> Location.changeset(attrs)
     |> Repo.update()
   end
+
+  def upsert(attrs) do
+    Location.changeset(attrs)
+    |> Repo.insert(on_conflict: :replace_all, conflict_target: :id)
+  end
 end

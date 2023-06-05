@@ -16,6 +16,11 @@ defmodule FeedMe.Business do
     |> Repo.update()
   end
 
+  def upsert(attrs) do
+    Business.changeset(attrs)
+    |> Repo.insert(on_conflict: :replace_all, conflict_target: :name)
+  end
+
   def locations(%Business{} = business) do
     business
     |> Repo.preload(:locations)

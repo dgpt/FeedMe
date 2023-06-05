@@ -13,6 +13,7 @@ defmodule FeedMe.Schema.Location do
     field :expired_at, :utc_datetime
     field :synced_at, :utc_datetime
     belongs_to :business, FeedMe.Schema.Business
+    timestamps()
   end
 
   def changeset(attrs) do
@@ -23,7 +24,6 @@ defmodule FeedMe.Schema.Location do
   def changeset(%__MODULE__{} = location, attrs) do
     location
     |> cast(attrs, [
-      :name,
       :business_id,
       :address,
       :coordinates,
@@ -35,6 +35,6 @@ defmodule FeedMe.Schema.Location do
       :expired_at,
       :synced_at
     ])
-    |> validate_required([:name, :business_id])
+    |> validate_required([:business_id])
   end
 end
