@@ -9,5 +9,5 @@ defmodule FeedMeWeb.Endpoint do
     pass: ["*/*"],
     json_decoder: Phoenix.json_library()
 
-  plug Absinthe.Plug, schema: FeedMeWeb.Schema
+  plug FeedMeWeb.Router
 end

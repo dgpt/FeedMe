@@ -11,6 +11,13 @@ defmodule FeedMe.Business do
   end
 
   def update(%Business{} = business, attrs) do
-    Repo.update(business, attrs)
+    business
+    |> Business.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def locations(%Business{} = business) do
+    business
+    |> Repo.preload(:locations)
   end
 end

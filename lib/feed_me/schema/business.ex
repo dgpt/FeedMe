@@ -4,7 +4,7 @@ defmodule FeedMe.Schema.Business do
 
   schema "businesses" do
     field :name, :string
-    has_many :locations, FeedMe.Location
+    has_many :locations, FeedMe.Schema.Location
   end
 
   def changeset(attrs) do
