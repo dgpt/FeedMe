@@ -4,7 +4,7 @@ defmodule FeedMe.Type.Coordinates do
   def type, do: :map
 
   def cast(coords) when is_binary(coords) do
-    coords_regex = ~r{\(?(.+),(.+)\)?}
+    coords_regex = ~r{\((.+),(.+)\)}
 
     [latitude, longitude] =
       coords_regex
@@ -25,7 +25,7 @@ defmodule FeedMe.Type.Coordinates do
   def load(%{latitude: _, longitude: _} = coords), do: cast(coords)
 
   def dump({latitude, longitude}) do
-    %{latitude: latitude, longitude: longitude}
+    {:ok, %{latitude: latitude, longitude: longitude}}
   end
 
   def dump(_), do: :error

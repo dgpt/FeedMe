@@ -18,6 +18,6 @@ defmodule FeedMe.Location do
 
   def upsert(attrs) do
     Location.changeset(attrs)
-    |> Repo.insert(on_conflict: :replace_all, conflict_target: :id)
+    |> Repo.insert(on_conflict: :nothing, conflict_target: :external_id)
   end
 end

@@ -3,6 +3,7 @@ defmodule FeedMe.Schema.Location do
   import Ecto.Changeset
 
   schema "locations" do
+    field :external_id, :string
     field :address, :string
     field :coordinates, FeedMe.Type.Coordinates
     field :description, :string
