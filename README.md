@@ -1,6 +1,6 @@
 # ReadMe for FeedMe
 
-A GraphQL API for the open source San Francisco food truck data - updated daily.
+A GraphQL API for the open source San Francisco food truck data.
 
 # Get Started
 
