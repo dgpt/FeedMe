@@ -4,12 +4,14 @@ defmodule FeedMe.Type.Coordinates do
   def type, do: :map
 
   def cast(coords) when is_binary(coords) do
-    coords_regex = ~r{\(?(.+),(.+)\)}
+    coords_regex = ~r{\(?(.+),(.+)\)?}
 
     [latitude, longitude] =
       coords_regex
       |> Regex.run(coords, capture: :all_but_first)
-      |> Enum.map(&String.trim/1)
+      |> Enum.map(fn str ->
+        str |> String.trim() |> String.trim_trailing("°")
+      end)
 
     {:ok, {latitude, longitude}}
   end
